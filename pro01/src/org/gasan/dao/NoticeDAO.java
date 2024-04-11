@@ -37,7 +37,7 @@ public class NoticeDAO {
 	}
 	
 	public Notice getNotice(int no) {
-		Notice noti = new Notice();
+		Notice noti = null;
 		OracleDB oracle = new OracleDB();
 		
 		try {
@@ -50,11 +50,16 @@ public class NoticeDAO {
 			pstmt.setInt(1, no);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				noti.setNo(rs.getInt("no"));
-				noti.setTitle(rs.getString("title"));
-				noti.setContent(rs.getString("content"));
-				noti.setResdate(rs.getString("resdate"));
-				noti.setVisited(rs.getInt("visited"));
+				noti = new Notice(rs.getInt("no"),
+						rs.getString("title"),
+						rs.getString("content"),
+						rs.getString("resdate"),
+						rs.getInt("visited"));
+//				noti.setNo(rs.getInt("no"));
+//				noti.setTitle(rs.getString("title"));
+//				noti.setContent(rs.getString("content"));
+//				noti.setResdate(rs.getString("resdate"));
+//				noti.setVisited(rs.getInt("visited"));
 			}
 		} catch(Exception e) {
 			e.printStackTrace();

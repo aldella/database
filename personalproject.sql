@@ -1,0 +1,15 @@
+select * from member;
+desc member;
+insert into member values('admin','1234','관리자','kflsjladf@flkdsajf','lsdkflfds');
+commit;
+drop table member;
+drop table notice;
+drop table qna;
+create table member(id varchar(50), pw varchar(50), name varchar(50), email varchar(100), tel varchar(100));
+alter table member add constraints fkey primary key (id);
+create table notice(no int primary key, title varchar(100), content varchar(1600), resdate timestamp, visited int);
+create table qna(no int primary key, plevel int, parno int, title varchar(100), content varchar(1600), resdate timestamp, aid int);
+commit;
+create table checktest(ck char(1));
+alter table checktest add constraint chk check (ck in('M','F'));
+desc checktest;
